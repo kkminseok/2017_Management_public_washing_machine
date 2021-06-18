@@ -1,0 +1,63 @@
+login check 원래
+<!DOCTYPE html>
+
+<?php
+if(!isset($_SESSION))
+   {
+       session_start();
+   }
+  $host = "localhost";
+  $user = "root";
+  $password = "autoset";
+  $DB_name = "yoonshen";
+
+  require "dbconfig.php";
+  $mysql = mysqli_connect($host, $user, $password, $DB_name);
+  if(mysqli_connect_errno($mysql))
+  {
+    echo "DB 접속 실패";
+  }
+  $id=$_POST['id'];
+  $password=md5($_POST['password']);
+  $cpassword=md5($_POST['cpassword']);
+  $phonenum=$_POST['phonenum'];
+  $connect=mysql_connect('localhost,'root','autoset');
+  mysql_select_db('yoonshen',$connect);
+
+  $sql = "insert into account_info (id, password,cpassword, phonenum)";
+  $sql = $sql. "values('$id','$password','$cpassword','phonenum')";
+  if($mysqli->query($sql)){
+    echo 'success inserting';
+  }else{
+    echo 'fail to insert sql';
+  }
+ ?>
+
+
+원본 2
+
+<!DOCTYPE html>
+
+<?php
+$username=$_POST['username'];
+$password=$_POST['password'];
+$cpassword=$_POST['cpassword'];
+$phonenum=$_POST['phonenum'];
+
+$connection = mysqli_connect('localhost','root','autoset','yoonshen');
+
+$sql="insert into account_info(username,password,cpassword,phonenum)";
+$sql=$sql."values('$username','$password','$cpassword','$phonenum')";
+mysql_query($connection,$);
+mysql_close($connection);
+echo"register completed</br/>";
+echo "<a href='/login.php'>sign up</a>";
+
+
+ ?>
+
+
+
+?>
+
+
